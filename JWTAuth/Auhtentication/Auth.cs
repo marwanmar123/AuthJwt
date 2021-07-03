@@ -117,10 +117,6 @@ namespace JWTAuth.Auhtentication
 
             if (user is null || !await _roleManager.RoleExistsAsync(role.RoleName))
                 return "Invalid user ID or Role";
-
-            //if (await _userManager.IsInRoleAsync(user, role.RoleName))
-            //    return "User already assigned to this role";
-            //AddToRoleAsync(user, role.RoleName);
             var result = await _userManager.RemoveFromRoleAsync(user, role.RoleName);
 
             return result.Succeeded ? string.Empty : "Error";
